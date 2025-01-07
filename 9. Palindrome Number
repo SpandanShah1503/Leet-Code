@@ -1,0 +1,28 @@
+public class Solution {
+    public boolean isPalindrome(int x) {
+        // If x is negative or if the last digit of x is 0 and x is not 0, it's not a palindrome
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int reversedHalf = 0;
+        while (x > reversedHalf) {
+            reversedHalf = reversedHalf * 10 + x % 10;
+            x /= 10;
+        }
+
+        // If the number has an even number of digits, x == reversedHalf
+        // If the number has an odd number of digits, x == reversedHalf / 10
+        return x == reversedHalf || x == reversedHalf / 10;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        
+        // Sample test cases
+        System.out.println(solution.isPalindrome(121)); // true
+        System.out.println(solution.isPalindrome(-121)); // false
+        System.out.println(solution.isPalindrome(10)); // false
+        System.out.println(solution.isPalindrome(12321)); // true
+    }
+}
